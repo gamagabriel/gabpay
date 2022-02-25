@@ -42,25 +42,10 @@ public class Person extends User {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Person person = (Person) o;
-        return userName.equals(person.userName) && cpf.equals(person.cpf) && birthDate.equals(person.birthDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), userName, cpf, birthDate);
-    }
-
-    @Override
     public String toString() {
-        return "Person{" +
-                "userName='" + userName + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", birthDate=" + birthDate +
-                "} " + super.toString();
+        return  super.toString() + ","
+                + userName + ","
+                + cpf + ","
+                + birthDate;
     }
 }

@@ -41,25 +41,10 @@ public class Store extends User{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Store store = (Store) o;
-        return storeName.equals(store.storeName) && cnpj.equals(store.cnpj) && ownerCpf.equals(store.ownerCpf);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), storeName, cnpj, ownerCpf);
-    }
-
-    @Override
     public String toString() {
-        return "Store{" +
-                "storeName='" + storeName + '\'' +
-                ", cnpj='" + cnpj + '\'' +
-                ", ownerCpf='" + ownerCpf + '\'' +
-                "} " + super.toString();
+        return  super.toString() + ","
+                + storeName + ","
+                + cnpj + ","
+                + ownerCpf;
     }
 }

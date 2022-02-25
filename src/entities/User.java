@@ -3,6 +3,8 @@ package entities;
 import java.util.Objects;
 
 public abstract class User {
+
+    private String id;
     private String ownerName;
     private String email;
     private Long phoneNumber;
@@ -15,6 +17,14 @@ public abstract class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.balance = balance;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getOwnerName() {
@@ -52,23 +62,22 @@ public abstract class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof User)) return false;
         User user = (User) o;
-        return ownerName.equals(user.ownerName) && email.equals(user.email) && phoneNumber.equals(user.phoneNumber) && balance.equals(user.balance);
+        return getId().equals(user.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ownerName, email, phoneNumber, balance);
+        return Objects.hash(getId());
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "ownerName='" + ownerName + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", balance=" + balance +
-                '}';
+        return  id + ","
+                + ownerName + ","
+                + email + ","
+                + phoneNumber + ","
+                + balance;
     }
 }
