@@ -1,6 +1,6 @@
 package entities;
 
-import builders.StoreBuilder;
+import entities.builders.StoreBuilder;
 
 public class Store extends User{
     private String storeName;

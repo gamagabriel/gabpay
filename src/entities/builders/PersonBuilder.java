@@ -1,4 +1,4 @@
-package builders;
+package entities.builders;
 
 import entities.Person;
 

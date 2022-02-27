@@ -1,6 +1,6 @@
 package entities;
 
-import builders.PersonBuilder;
+import entities.builders.PersonBuilder;
 
 import java.time.LocalDate;
 
