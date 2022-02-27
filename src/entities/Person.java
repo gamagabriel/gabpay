@@ -1,8 +1,9 @@
 package entities;
 
+import java.time.LocalDate;
+
 import entities.builders.PersonBuilder;
 
-import java.time.LocalDate;
 
 public class Person extends User {
     private String userName;

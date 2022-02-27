@@ -1,14 +1,15 @@
 package test;
 
-import entities.Person;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import repositories.PersonRepository;
-import services.PersonService;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import entities.Person;
+import repositories.PersonRepository;
+import services.PersonService;
 
 public class PersonServiceTest {
 
