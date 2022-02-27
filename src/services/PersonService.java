@@ -9,10 +9,10 @@ import java.util.List;
 
 public class PersonService {
 
-    private PersonRepository repository;
+    private final PersonRepository repository;
 
-    public PersonService(PersonRepository repository) {
-        this.repository = repository;
+    public PersonService() {
+        this.repository = PersonRepository.factory();
     }
 
     public List<Person> findAll(){
@@ -39,10 +39,10 @@ public class PersonService {
     private void checkUniqueFields(Person person){
         var users = findAll();
         for (Person p : users) {
-            if (p.getCpf().equals(person.getCpf())) throw new RepositoryException("CPF already exists on the data base");
-            if (p.getUserName().equals(person.getUserName())) throw new RepositoryException("User name already exists on the data base");
-            if (p.getEmail().equals(person.getEmail())) throw new RepositoryException("Email name already exists on the data base");
-            if (p.getPhoneNumber().equals(person.getPhoneNumber())) throw new RepositoryException("Phone number name already exists on the data base");
+            if (p.getCpf().equals(person.getCpf())) throw new RepositoryException("CPF already exists in the data base");
+            if (p.getUserName().equals(person.getUserName())) throw new RepositoryException("User name already exists in the data base");
+            if (p.getEmail().equals(person.getEmail())) throw new RepositoryException("Email name already exists in the data base");
+            if (p.getPhoneNumber().equals(person.getPhoneNumber())) throw new RepositoryException("Phone number name already exists in the data base");
         }
     }
 
