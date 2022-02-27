@@ -12,7 +12,8 @@ public abstract class User {
 
     public User() {}
 
-    public User(String ownerName, String email, Long phoneNumber, Double balance) {
+    public User(String id, String ownerName, String email, Long phoneNumber, Double balance) {
+        this.id = id;
         this.ownerName = ownerName;
         this.email = email;
         this.phoneNumber = phoneNumber;

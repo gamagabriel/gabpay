@@ -1,7 +1,8 @@
 package entities;
 
+import builders.PersonBuilder;
+
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Person extends User {
     private String userName;
@@ -10,8 +11,8 @@ public class Person extends User {
 
     public Person() {}
 
-    public Person(String ownerName, String email, Long phoneNumber, Double balance, String userName, String cpf, LocalDate birthDate) {
-        super(ownerName, email, phoneNumber, balance);
+    public Person(String id, String ownerName, String email, Long phoneNumber, Double balance, String userName, String cpf, LocalDate birthDate) {
+        super(id, ownerName, email, phoneNumber, balance);
         this.userName = userName;
         this.cpf = cpf;
         this.birthDate = birthDate;
@@ -47,5 +48,9 @@ public class Person extends User {
                 + userName + ","
                 + cpf + ","
                 + birthDate;
+    }
+
+    public static PersonBuilder builder(){
+        return new PersonBuilder();
     }
 }

@@ -1,6 +1,6 @@
 package entities;
 
-import java.util.Objects;
+import builders.StoreBuilder;
 
 public class Store extends User{
     private String storeName;
@@ -9,8 +9,8 @@ public class Store extends User{
 
     public Store() {}
 
-    public Store(String ownerName, String email, Long phoneNumber, Double balance, String storeName, String cnpj, String ownerCpf) {
-        super(ownerName, email, phoneNumber, balance);
+    public Store(String id, String ownerName, String email, Long phoneNumber, Double balance, String storeName, String cnpj, String ownerCpf) {
+        super(id, ownerName, email, phoneNumber, balance);
         this.storeName = storeName;
         this.cnpj = cnpj;
         this.ownerCpf = ownerCpf;
@@ -38,6 +38,10 @@ public class Store extends User{
 
     public void setOwnerCpf(String ownerCpf) {
         this.ownerCpf = ownerCpf;
+    }
+
+    public static StoreBuilder builder(){
+        return new StoreBuilder();
     }
 
     @Override
