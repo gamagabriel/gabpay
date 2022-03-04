@@ -1,10 +1,9 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import entities.Person;
@@ -16,7 +15,7 @@ public class PersonServiceTest {
     private PersonService service;
     private PersonRepository repository;
 
-    @BeforeEach
+    @BeforeAll
     public void instantiateService(){
         service = new PersonService();
         repository = PersonRepository.factory();
@@ -24,14 +23,21 @@ public class PersonServiceTest {
 
     @Test
     public void findAllTest(){
-        //given
-        List<Person> users;
 
-        //when
-        users = service.findAll();
+        List<Person> list = repository.findAll();
+        for (Person person: list) {
+            printPerson(person);
 
-        //then
-        assertNotNull(users);
+        }
+    }
+
+    private void printPerson(Person person){
+        System.out.println("ID: " + person.getId());
+        System.out.println("NAME: " + person.getOwnerName());
+        System.out.println("EMAIL: " + person.getEmail());
+        System.out.println("CPF:" + person.getCpf());
+        System.out.println("USERNAME: " + person.getUserName());
+        System.out.println();
     }
 
 

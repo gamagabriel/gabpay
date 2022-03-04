@@ -6,6 +6,7 @@ import repositories.RepositoryException;
 import utils.IdGenerator;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class PersonService {
 
@@ -21,6 +22,15 @@ public class PersonService {
 
     public Person findById(String id){
         return repository.findById(id);
+    }
+
+    public Person findByUserName(String userName){
+        List<Person> list = repository.findAll();
+        for (Person person: list) {
+            if (person.getUserName().equals(userName)){
+                return person;
+            }
+        } throw new NoSuchElementException("Username not found");
     }
 
     public Person save(Person person){

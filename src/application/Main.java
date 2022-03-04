@@ -1,13 +1,15 @@
 package application;
 
+import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 
+import repositories.PersonRepository;
 import services.PersonService;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		Locale.setDefault(Locale.US);
 		PersonService ps = new PersonService();
 		Scanner sc = new Scanner(System.in);
