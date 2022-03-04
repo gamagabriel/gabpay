@@ -42,8 +42,9 @@ public class PersonService {
         return findById(id);
     }
 
-    public void deleteById(String id){
+    public List<Person> deleteById(String id){
         repository.deleteById(id);
+        return null;
     }
 
     private void checkUniqueFields(Person person){

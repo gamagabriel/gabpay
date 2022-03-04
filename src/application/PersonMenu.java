@@ -1,11 +1,14 @@
 package application;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import entities.Person;
 import repositories.PersonRepository;
+import repositories.RepositoryException;
 import services.PersonService;
 
 public abstract class PersonMenu {
@@ -38,7 +41,7 @@ public abstract class PersonMenu {
 				caseFour(ps);
 				break;
 			case '5':
-				
+				caseFive(sc, ps);
 				break;
 			case '6':
 
@@ -102,6 +105,21 @@ public abstract class PersonMenu {
 		for (Person person: personList) {
 			printPerson(person);
 		}
+	}
+
+	private static void caseFive(Scanner sc, PersonService ps){
+		System.out.print("Entre com o ID do user a ser excluído: ");
+		String idUser = sc.nextLine();
+
+		try{
+			ps.deleteById(idUser);
+		} catch(RepositoryException e){
+			System.out.println("ID do user invalido");
+			System.out.println();
+			return;
+		}
+		System.out.println("Usuario ID" + idUser + " removido com sucesso");
+
 	}
 
 	private static void printPerson(Person person){

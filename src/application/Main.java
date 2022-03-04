@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 
-import repositories.PersonRepository;
 import services.PersonService;
 
 public class Main {
