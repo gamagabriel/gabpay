@@ -1,13 +1,11 @@
 package application;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import entities.Person;
-import repositories.PersonRepository;
 import repositories.RepositoryException;
 import services.PersonService;
 
@@ -15,14 +13,15 @@ public abstract class PersonMenu {
 
 	public static void mainMenu(Scanner sc, PersonService ps) {
 		char choice = 0;
-
-		while (choice != '6') {
+		System.out.println("\n---PERSONAL ACCOUNT---");
+		while (choice != '5') {
+			
+			System.out.println("O que deseja fazer?\n");
 			System.out.println("Criar conta, digite 1");
-			System.out.println("Buscar conta por ID, digite 2");
-			System.out.println("Buscar conta por username, digite 3");
-			System.out.println("Lista de todas as contas, digite 4");
-			System.out.println("Deletar conta, digite 5");
-			System.out.println("Para sair, digite 6");
+			System.out.println("Buscar conta, digite 2");
+			System.out.println("Lista de todas as contas, digite 3");
+			System.out.println("Deletar conta, digite 4");
+			System.out.println("Para sair, digite 5");
 			System.out.println();
 			System.out.print("Número: ");
 			choice = sc.nextLine().charAt(0);
@@ -35,15 +34,12 @@ public abstract class PersonMenu {
 				caseTwo(sc, ps);
 				break;
 			case '3':
-				caseThree(sc, ps);
+				caseThree(ps);
 				break;
 			case '4':
-				caseFour(ps);
+				caseFour(sc, ps);
 				break;
 			case '5':
-				caseFive(sc, ps);
-				break;
-			case '6':
 
 				break;
 			default:
@@ -85,43 +81,81 @@ public abstract class PersonMenu {
 		
 		System.out.println("Usuário registrado com sucesso!");
 	}
-
+	
 	private static void caseTwo(Scanner sc, PersonService ps) {
-		System.out.print("Entre com o ID do user: ");
-		String idUser = sc.nextLine();
-		Person person = ps.findById(idUser);
-		printPerson(person);
+		System.out.println("\nQual busca deseja realizar?");
+		System.out.println("1. Buscar por ID");
+		System.out.println("2. Buscar por @username");
+		System.out.println("3. Voltar ao menu");
+		System.out.print("\nDigite o número correspondente (1/2): ");
+		char num = 0;
+		
+		while(num != '4') {
+			num = sc.nextLine().charAt(0);
+			
+			switch (num) {
+			case '1':
+				caseId(sc, ps);
+				break;
+			case '2':
+				caseUserName(sc, ps);
+				break;
+			case '3':
+				mainMenu(sc, ps);
+				return;
+			default:
+				System.out.println("\nOpção inválida");
+				caseTwo(sc, ps);
+				break;
+			}
+		}
+		
 	}
 
-	private static void caseThree(Scanner sc, PersonService ps){
-		System.out.print("Entre com o username: ");
-		String userName = sc.nextLine();
-		Person person = ps.findByUserName(userName);
-		printPerson(person);
-	}
-
-	private static void caseFour(PersonService ps){
+	private static void caseThree(PersonService ps){
 		List<Person> personList = ps.findAll();
 		for (Person person: personList) {
 			printPerson(person);
 		}
 	}
 
-	private static void caseFive(Scanner sc, PersonService ps){
-		System.out.print("Entre com o ID do user a ser excluído: ");
-		String idUser = sc.nextLine();
-
+	private static void caseFour(Scanner sc, PersonService ps){
 		try{
+			System.out.print("Entre com o ID do user a ser excluído: ");
+			String idUser = sc.nextLine();
 			ps.deleteById(idUser);
+			System.out.println("\nUsuario ID" + idUser + " removido com sucesso\n");
 		} catch(RepositoryException e){
-			System.out.println("ID do user invalido");
-			System.out.println();
+			System.out.println("\nO ID digitado é inexistente.\n");
 			return;
 		}
-		System.out.println("Usuario ID" + idUser + " removido com sucesso");
 
 	}
+	
+	private static void caseId(Scanner sc, PersonService ps) {
+		try {
+		System.out.print("Entre com o ID do user: ");
+		String idUser = sc.nextLine();
+		Person person = ps.findById(idUser);
+		printPerson(person);
+		} catch (RepositoryException e) {
+			System.out.println("\n*ID INVÁLIDO! TENTE NOVAMENTE* \n");
+			caseTwo(sc, ps);
+		}
+	}
 
+	private static void caseUserName(Scanner sc, PersonService ps){
+		try{
+			System.out.print("Entre com o @username: ");
+		String userName = sc.nextLine();
+		Person person = ps.findByUserName(userName);
+		printPerson(person);
+		} catch (NoSuchElementException e) {
+			System.out.println("\n*@USERNAME INVÁLIDO! TENTE NOVAMENTE* \n");
+			caseTwo(sc, ps);
+		}
+	}
+	
 	private static void printPerson(Person person){
 		System.out.println();
 		System.out.println("ID: " + person.getId());
