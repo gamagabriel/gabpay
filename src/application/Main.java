@@ -1,15 +1,14 @@
 package application;
 
-import java.io.FileNotFoundException;
-import java.util.Locale;
-import java.util.Scanner;
-
 import services.PersonService;
 import services.StoreService;
 
+import java.util.Locale;
+import java.util.Scanner;
+
 public class Main {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		PersonService ps = new PersonService();
 		StoreService ss = new StoreService();

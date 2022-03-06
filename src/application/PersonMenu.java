@@ -15,14 +15,15 @@ public abstract class PersonMenu {
 	public static void mainMenu(Scanner sc, PersonService ps) {
 		char choice = 0;
 		System.out.println("\n---PERSONAL ACCOUNT---");
+
 		while (choice != '5') {
-			
+
 			System.out.println("O que deseja fazer?\n");
-			System.out.println("Criar conta, digite 1");
-			System.out.println("Buscar conta, digite 2");
-			System.out.println("Listar todas as contas, digite 3");
-			System.out.println("Deletar uma conta, digite 4");
-			System.out.println("Para sair, digite 5");
+			System.out.println("(1) Criar conta");
+			System.out.println("(2) Buscar conta");
+			System.out.println("(3) Listar todas as contas");
+			System.out.println("(4) Deletar uma conta");
+			System.out.println("(5) Para sair");
 			System.out.println();
 			System.out.print("Número: ");
 			choice = sc.nextLine().charAt(0);
@@ -41,7 +42,8 @@ public abstract class PersonMenu {
 				caseFour(sc, ps);
 				break;
 			case '5':
-
+				System.out.println("Até logo!");
+				choice = '5';
 				break;
 			default:
 				System.out.println("Opção inválida");
@@ -91,25 +93,27 @@ public abstract class PersonMenu {
 	
 	private static void caseTwo(Scanner sc, PersonService ps) {
 		System.out.println("\nQual busca deseja realizar?");
-		System.out.println("1. Buscar por ID");
-		System.out.println("2. Buscar por @username");
-		System.out.println("3. Voltar ao menu");
+		System.out.println("(1) Buscar por ID");
+		System.out.println("(2) Buscar por @username");
+		System.out.println("(3) Voltar ao menu principal");
 		System.out.print("\nDigite o número correspondente (1/2): ");
-		char num = 0;
+		char choice = 0;
 		
-		while(num != '4') {
-			num = sc.nextLine().charAt(0);
+		while(choice != '4') {
+			choice = sc.nextLine().charAt(0);
 			
-			switch (num) {
+			switch (choice) {
 			case '1':
 				caseId(sc, ps);
+				mainMenu(sc, ps);
 				break;
 			case '2':
 				caseUserName(sc, ps);
+				mainMenu(sc, ps);
 				break;
 			case '3':
 				mainMenu(sc, ps);
-				return;
+				break;
 			default:
 				System.out.println("\nOpção inválida");
 				caseTwo(sc, ps);
@@ -141,10 +145,10 @@ public abstract class PersonMenu {
 	
 	private static void caseId(Scanner sc, PersonService ps) {
 		try {
-		System.out.print("Entre com o ID do user: ");
-		String idUser = sc.nextLine();
-		Person person = ps.findById(idUser);
-		printPerson(person);
+			System.out.print("Entre com o ID do user: ");
+			String idUser = sc.nextLine();
+			Person person = ps.findById(idUser);
+			printPerson(person);
 		} catch (RepositoryException e) {
 			System.out.println("\n*ID INVÁLIDO! TENTE NOVAMENTE* \n");
 			caseTwo(sc, ps);
@@ -154,9 +158,9 @@ public abstract class PersonMenu {
 	private static void caseUserName(Scanner sc, PersonService ps){
 		try{
 			System.out.print("Entre com o @username: ");
-		String userName = sc.nextLine();
-		Person person = ps.findByUserName(userName);
-		printPerson(person);
+			String userName = sc.nextLine();
+			Person person = ps.findByUserName(userName);
+			printPerson(person);
 		} catch (NoSuchElementException e) {
 			System.out.println("\n*@USERNAME INVÁLIDO! TENTE NOVAMENTE* \n");
 			caseTwo(sc, ps);

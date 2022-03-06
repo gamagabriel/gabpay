@@ -15,12 +15,13 @@ public class StoreMenu {
 		System.out.println("\n--- STORE ACCOUNT ---");
 		
 		while (choice != '5') {
+
 			System.out.println("O que deseja fazer?\n");
-			System.out.println("Criar conta, digite 1");
-			System.out.println("Buscar conta, digite 2");
-			System.out.println("Listar todas as contas, digite 3");
-			System.out.println("Deletar uma conta, digite 4");
-			System.out.println("Para sair, digite 5");
+			System.out.println("(1) Criar conta");
+			System.out.println("(2) Buscar conta");
+			System.out.println("(3) Listar todas as contas");
+			System.out.println("(4) Deletar uma conta");
+			System.out.println("(5) Para sair");
 			System.out.println();
 			System.out.print("Número: ");
 			choice = sc.nextLine().charAt(0);
@@ -39,8 +40,9 @@ public class StoreMenu {
 				caseFour(sc, ss);
 				break;
 			case '5':
+				System.out.println("Até logo!");
+				choice = '5';
 				break;
-
 			default:
 				System.out.println("Opção inválida");
 				break;
@@ -91,9 +93,11 @@ public class StoreMenu {
 			switch (choice){
 				case '1':
 					caseId(sc, ss);
+					mainMenu(sc, ss);
 					break;
 				case '2':
 					caseCnpj(sc, ss);
+					mainMenu(sc, ss);
 					break;
 				case '3':
 					mainMenu(sc, ss);
@@ -129,7 +133,7 @@ public class StoreMenu {
 
 		try {
 			System.out.print("Entre com o ID: ");
-			String id = sc.next();
+			String id = sc.nextLine();
 			Store store = ss.findById(id);
 			printStore(store);
 		} catch(StringIndexOutOfBoundsException e) {

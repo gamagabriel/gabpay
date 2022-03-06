@@ -84,12 +84,10 @@ public class StoreRepository {
     
     public Store findByCnpj(String cnpj) {
     	List<Store> stores = readAll();
-    	Store store = null;
-    	for (Store obj : stores) {
-    		if (obj.getCnpj().equals(cnpj)) store = obj;
+    	for (Store store : stores) {
+    		if (store.getCnpj().equals(cnpj)) return store;
 		}
-    	if (store == null) throw new RepositoryException("Store dont found");
-    	return store;
+    	throw new RepositoryException("Store dont found");
     }
 
     public void saveAll(List<Store> list) {
