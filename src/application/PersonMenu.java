@@ -36,7 +36,7 @@ public abstract class PersonMenu {
 				caseTwo(sc, ps);
 				break;
 			case '3':
-				caseThree(sc, ps);
+				caseThree(ps);
 				break;
 			case '4':
 				caseFour(sc, ps);
@@ -122,12 +122,11 @@ public abstract class PersonMenu {
 		
 	}
 
-	private static void caseThree(Scanner sc, PersonService ps){
+	private static void caseThree(PersonService ps){
 		List<Person> personList = ps.findAll();
 		for (Person person: personList) {
 			printPerson(person);
 		}
-		mainMenu(sc, ps);
 	}
 
 	private static void caseFour(Scanner sc, PersonService ps){
@@ -138,7 +137,6 @@ public abstract class PersonMenu {
 			System.out.println("\nUsuario ID" + idUser + " removido com sucesso\n");
 		} catch(RepositoryException e){
 			System.out.println("\nO ID digitado é inexistente.\n");
-			return;
 		}
 
 	}
