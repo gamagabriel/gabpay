@@ -1,9 +1,11 @@
 package application;
 
+import java.lang.ref.Cleaner;
 import java.util.List;
 import java.util.Scanner;
 
 import entities.Store;
+import repositories.RepositoryException;
 import services.StoreService;
 
 public class StoreMenu {
@@ -28,16 +30,15 @@ public class StoreMenu {
 				caseOne(sc, ss);
 				break;
 			case '2':
-				caseCnpj(sc, ss);
+				caseTwo(sc, ss);
 				break;
 			case '3':
-				caseThree(ss);
+
 				break;
 			case '4':
-				
+
 				break;
 			case '5':
-				
 				break;
 
 			default:
@@ -77,29 +78,71 @@ public class StoreMenu {
 	}
 	
 	private static void caseTwo(Scanner sc, StoreService ss) {
-		
+		System.out.println("\nQual busca deseja realizar?");
+		System.out.println("1. Buscar por ID");
+		System.out.println("2. Buscar por Cnpj");
+		System.out.println("3. Voltar ao menu");
+		System.out.print("\nDigite o número correspondente (1/2): ");
+		char choice = 0;
+
+		while(choice != '4'){
+			choice = sc.nextLine().charAt(0);
+
+			switch (choice){
+				case '1':
+					caseId(sc, ss);
+					break;
+
+				case '2':
+					caseCnpj(sc, ss);
+					break;
+
+				case '3':
+					mainMenu(sc, ss);
+					break;
+
+			}
+
+		}
+
 	}
-	
-	private static void caseCnpj(Scanner sc, StoreService ss) {
-		System.out.print("Entre com o CNPJ: ");
-		String cnpj = sc.nextLine();
-		Store store = ss.findByCnpj(cnpj);
-		printStore(store);
-	}
-	
-	private static void caseThree(StoreService ss) {
-		List<Store> list = ss.findAll();
-		for(Store store: list) {
-		printStore(store);	
+
+
+
+
+
+	private static void caseId(Scanner sc, StoreService ss){
+
+		try {
+			System.out.print("Entre com o ID: ");
+			String id = sc.next();
+			Store store = ss.findById(id);
+			printStore(store);
+		} catch(StringIndexOutOfBoundsException e) {
+			System.out.println("ID INVALIDO! Tente novamente");
+			e.getStackTrace();
+			caseTwo(sc, ss);
 		}
 	}
-	
+
+	private static void caseCnpj(Scanner sc, StoreService ss) {
+		try{
+			System.out.print("Entre com o CNPJ: ");
+			String cnpj = sc.nextLine();
+			Store store = ss.findByCnpj(cnpj);
+			printStore(store);
+		} catch(RepositoryException e){
+			e.getStackTrace();
+		}
+
+	}
+
 	private static void printStore(Store store){
 		System.out.println();
 		System.out.println("ID: " + store.getId());
 		System.out.println("CNPJ:" + store.getCnpj());
 		System.out.println("STORE NAME: " + store.getStoreName());
-		System.out.println("NAME: " + store.getOwnerName());
+		System.out.println("OWNER NAME: " + store.getOwnerName());
 		System.out.println("EMAIL: " + store.getEmail());
 		System.out.println();
 	}

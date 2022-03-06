@@ -38,6 +38,7 @@ public class StoreService {
 
     public void deleteById(String id){
         repository.deleteById(id);
+        return;
     }
 
     private void checkUniqueFields(Store store){

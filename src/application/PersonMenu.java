@@ -1,6 +1,7 @@
 package application;
 
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -51,35 +52,41 @@ public abstract class PersonMenu {
 	}
 	
 	private static void caseOne(Scanner sc, PersonService ps) {
-		System.out.print("Digite o seu nome: ");
-		String ownerName = sc.nextLine();
-		System.out.print("Digite o seu email: ");
-		String email = sc.nextLine();
-		System.out.print("Digite o seu número de telefone: ");
-		Long phoneNumber = sc.nextLong();
-		sc.nextLine();
-		System.out.print("Digite o seu username: ");
-		String userName = sc.nextLine();
-		System.out.print("Digite o seu CPF: ");
-		String cpf = sc.nextLine();
-		System.out.print("Digite sua data de nascimento (dd/MM/yyyy): ");
-		String birthdateString = sc.nextLine();
-		String[] birthdateVect = birthdateString.split("/");
-		LocalDate birthdate = LocalDate.of(Integer.parseInt(birthdateVect[2]), Integer.parseInt(birthdateVect[1]), Integer.parseInt(birthdateVect[0]));
-		
-		Person person = Person.builder()
-				.ownerName(ownerName)
-				.email(email)
-				.phoneNumber(phoneNumber)
-				.balance(0.0)
-				.userName(userName)
-				.cpf(cpf)
-				.birthDate(birthdate)
-				.build();
+		try {
+			System.out.print("Digite o seu nome: ");
+			String ownerName = sc.nextLine();
+			System.out.print("Digite o seu email: ");
+			String email = sc.nextLine();
+			System.out.print("Digite o seu número de telefone: ");
+			Long phoneNumber = sc.nextLong();
+			sc.nextLine();
+			System.out.print("Digite o seu username: ");
+			String userName = sc.nextLine();
+			System.out.print("Digite o seu CPF: ");
+			String cpf = sc.nextLine();
+			System.out.print("Digite sua data de nascimento (dd/MM/yyyy): ");
+			String birthdateString = sc.nextLine();
+			String[] birthdateVect = birthdateString.split("/");
+			LocalDate birthdate = LocalDate.of(Integer.parseInt(birthdateVect[2]), Integer.parseInt(birthdateVect[1]), Integer.parseInt(birthdateVect[0]));
 
-		ps.save(person);
-		
-		System.out.println("Usuário registrado com sucesso!");
+			Person person = Person.builder()
+					.ownerName(ownerName)
+					.email(email)
+					.phoneNumber(phoneNumber)
+					.balance(0.0)
+					.userName(userName)
+					.cpf(cpf)
+					.birthDate(birthdate)
+					.build();
+
+			ps.save(person);
+
+			System.out.println("Usuário registrado com sucesso!");
+		} catch (InputMismatchException e){
+			System.out.println("INFORMACAO INVALIDA");
+			caseOne(sc, ps);
+		}
+
 	}
 	
 	private static void caseTwo(Scanner sc, PersonService ps) {
