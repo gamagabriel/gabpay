@@ -36,7 +36,7 @@ public class StoreMenu {
 				caseThree(ss);
 				break;
 			case '4':
-
+				caseFour(sc, ss);
 				break;
 			case '5':
 				break;
@@ -92,11 +92,9 @@ public class StoreMenu {
 				case '1':
 					caseId(sc, ss);
 					break;
-
 				case '2':
 					caseCnpj(sc, ss);
 					break;
-
 				case '3':
 					mainMenu(sc, ss);
 					break;
@@ -111,6 +109,19 @@ public class StoreMenu {
 		List<Store> list = ss.findAll();
 		for(Store store: list) {
 			printStore(store);
+		}
+	}
+
+	private static void caseFour(Scanner sc, StoreService ss){
+		try {
+			System.out.print("Entre com o ID a ser excluido: ");
+
+			String id = sc.nextLine();
+			ss.deleteById(id);
+			System.out.println("Store ID " + id + " removida com sucesso");
+		} catch (RepositoryException e){
+			System.out.println("ID nao encontrado.");
+			mainMenu(sc, ss);
 		}
 	}
 
