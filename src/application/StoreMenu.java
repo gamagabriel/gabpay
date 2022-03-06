@@ -33,7 +33,7 @@ public class StoreMenu {
 				caseTwo(sc, ss);
 				break;
 			case '3':
-
+				caseThree(ss);
 				break;
 			case '4':
 
@@ -107,9 +107,12 @@ public class StoreMenu {
 
 	}
 
-
-
-
+	private static void caseThree(StoreService ss) {
+		List<Store> list = ss.findAll();
+		for(Store store: list) {
+			printStore(store);
+		}
+	}
 
 	private static void caseId(Scanner sc, StoreService ss){
 
