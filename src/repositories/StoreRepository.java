@@ -74,12 +74,10 @@ public class StoreRepository {
 
     public Store findById(String id) {
         List<Store> stores = readAll();
-        Store store = null;
         for (Store object : stores) {
-            if (object.getId().equals(id)) store = object;
+            if (object.getId().equals(id)) return object;
         }
-        if (store == null) throw new RepositoryException("Store dont found");
-        return store;
+        throw new RepositoryException("Store dont found");
     }
     
     public Store findByCnpj(String cnpj) {
