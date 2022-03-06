@@ -1,10 +1,14 @@
 package repositories;
 
-import entities.Store;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import entities.Store;
 
 public class StoreRepository {
 
@@ -76,6 +80,16 @@ public class StoreRepository {
         }
         if (store == null) throw new RepositoryException("Store dont found");
         return store;
+    }
+    
+    public Store findByCnpj(String cnpj) {
+    	List<Store> stores = readAll();
+    	Store store = null;
+    	for (Store obj : stores) {
+    		if (obj.getCnpj().equals(cnpj)) store = obj;
+		}
+    	if (store == null) throw new RepositoryException("Store dont found");
+    	return store;
     }
 
     public void saveAll(List<Store> list) {

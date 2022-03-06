@@ -22,6 +22,10 @@ public class StoreService {
     public Store findById(String id){
         return repository.findById(id);
     }
+    
+    public Store findByCnpj(String cnpj) {
+    	return repository.findByCnpj(cnpj);
+    }
 
     public Store save(Store store){
         checkUniqueFields(store);

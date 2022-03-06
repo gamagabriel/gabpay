@@ -19,8 +19,8 @@ public abstract class PersonMenu {
 			System.out.println("O que deseja fazer?\n");
 			System.out.println("Criar conta, digite 1");
 			System.out.println("Buscar conta, digite 2");
-			System.out.println("Lista de todas as contas, digite 3");
-			System.out.println("Deletar conta, digite 4");
+			System.out.println("Listar todas as contas, digite 3");
+			System.out.println("Deletar uma conta, digite 4");
 			System.out.println("Para sair, digite 5");
 			System.out.println();
 			System.out.print("Número: ");

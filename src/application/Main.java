@@ -5,12 +5,14 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import services.PersonService;
+import services.StoreService;
 
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		Locale.setDefault(Locale.US);
 		PersonService ps = new PersonService();
+		StoreService ss = new StoreService();
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Olá! Bem-vindo ao GabPay!\n");
@@ -24,7 +26,7 @@ public class Main {
 			PersonMenu.mainMenu(sc, ps);
 			break;
 		case 2:
-			System.out.println("Store Account");
+			StoreMenu.mainMenu(sc, ss);
 			break;
 		}
 
