@@ -1,6 +1,5 @@
 package application;
 
-import java.lang.ref.Cleaner;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,7 +40,6 @@ public class StoreMenu {
 				break;
 			case '5':
 				System.out.println("Até logo!");
-				choice = '5';
 				break;
 			default:
 				System.out.println("Opção inválida");
@@ -51,6 +49,7 @@ public class StoreMenu {
 	}
 	
 	private static void caseOne(Scanner sc, StoreService ss) {
+
 		System.out.print("Digite o seu nome: ");
 		String ownerName = sc.nextLine();
 		System.out.print("Digite o seu email: ");
@@ -64,7 +63,7 @@ public class StoreMenu {
 		String cnpj = sc.nextLine();
 		System.out.print("Digite o seu CPF: ");
 		String ownerCpf = sc.nextLine();
-		
+
 		Store store = Store.builder()
 				.ownerName(ownerName)
 				.email(email)
@@ -74,7 +73,7 @@ public class StoreMenu {
 				.cnpj(cnpj)
 				.ownerCpf(ownerCpf)
 				.build();
-		
+
 		ss.save(store);
 		System.out.println("\nLoja cadastrada com sucesso!\n");
 	}

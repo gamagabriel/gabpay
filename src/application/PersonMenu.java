@@ -36,14 +36,13 @@ public abstract class PersonMenu {
 				caseTwo(sc, ps);
 				break;
 			case '3':
-				caseThree(ps);
+				caseThree(sc, ps);
 				break;
 			case '4':
 				caseFour(sc, ps);
 				break;
 			case '5':
 				System.out.println("Até logo!");
-				choice = '5';
 				break;
 			default:
 				System.out.println("Opção inválida");
@@ -123,11 +122,12 @@ public abstract class PersonMenu {
 		
 	}
 
-	private static void caseThree(PersonService ps){
+	private static void caseThree(Scanner sc, PersonService ps){
 		List<Person> personList = ps.findAll();
 		for (Person person: personList) {
 			printPerson(person);
 		}
+		mainMenu(sc, ps);
 	}
 
 	private static void caseFour(Scanner sc, PersonService ps){
