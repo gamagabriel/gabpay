@@ -1,6 +1,7 @@
 package repositories;
 
 import entities.Person;
+import entities.Store;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -71,13 +72,12 @@ public class PersonRepository {
 
     public Person findById(String id) {
         List<Person> users = readAll();
-        Person person = null;
-        for (Person object : users) {
-            if (object.getId().equals(id)) person = object;
+        for (Person person : users) {
+            if (person.getId().equals(id)) return person;
         }
-        if (person == null) throw new RepositoryException("Person dont found");
-        return person;
+        throw new RepositoryException("Store dont found");
     }
+
 
     public void saveAll(List<Person> list) {
         List<Person> users = readAll();
