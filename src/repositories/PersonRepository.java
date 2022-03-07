@@ -1,7 +1,6 @@
 package repositories;
 
 import entities.Person;
-import entities.Store;
 
 import java.io.*;
 import java.time.LocalDate;
