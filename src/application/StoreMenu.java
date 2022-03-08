@@ -83,7 +83,7 @@ public class StoreMenu {
 		System.out.println("1. Buscar por ID");
 		System.out.println("2. Buscar por Cnpj");
 		System.out.println("3. Voltar ao menu");
-		System.out.print("\nDigite o número correspondente (1/2): ");
+		System.out.print("\nDigite o número correspondente (1/2/3): ");
 		char choice = 0;
 
 		while(choice != '4'){

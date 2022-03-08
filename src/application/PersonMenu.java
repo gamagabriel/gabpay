@@ -95,7 +95,7 @@ public abstract class PersonMenu {
 		System.out.println("(1) Buscar por ID");
 		System.out.println("(2) Buscar por @username");
 		System.out.println("(3) Voltar ao menu principal");
-		System.out.print("\nDigite o número correspondente (1/2): ");
+		System.out.print("\nDigite o número correspondente (1/2/3): ");
 		char choice = 0;
 		
 		while(choice != '4') {
