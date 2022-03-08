@@ -84,7 +84,7 @@ public abstract class PersonMenu {
 
 			System.out.println("Usuário registrado com sucesso!");
 		} catch (InputMismatchException e){
-			System.out.println("INFORMACAO INVALIDA");
+			System.out.println("INFORMAÇÃOO INVALIDA");
 			caseOne(sc, ps);
 		}
 

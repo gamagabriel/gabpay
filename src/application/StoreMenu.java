@@ -10,9 +10,9 @@ import services.StoreService;
 public class StoreMenu {
 	
 	public static void mainMenu(Scanner sc, StoreService ss) {
-		char choice = 0;
 		System.out.println("\n--- STORE ACCOUNT ---");
-		
+		char choice = 0;
+
 		while (choice != '5') {
 
 			System.out.println("O que deseja fazer?\n");
